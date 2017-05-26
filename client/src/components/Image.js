@@ -1,21 +1,53 @@
 // @flow
 
+import React from 'react';
 import styled from 'styled-components';
-import { boxShadow } from '../styles/vars';
+import { Loader } from '../components';
 
-const Image = styled.div`
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: contain;
-  min-width: 208px;
-  min-height: 180px;
-  width: 100%;
-  height: 100%;
-  box-shadow: ${boxShadow};
-  background-image: url(${props => props.image});
-  margin-bottom: 2.5em;
-  display: flex;
-  flex: 1;
+const ImageBox = styled.div`
+  min-height: 100px;
+  min-width: 100px;
 `;
 
-export default Image;
+type Props = {
+  src: string,
+  alt: string,
+};
+
+class ImageComponent extends React.Component {
+  static displayName = 'ImageComponent';
+
+  props: Props;
+  state = {
+    isLoading: true,
+  };
+
+  componentDidMount() {
+    const newImage = new Image();
+    newImage.onload = () => {
+      if (newImage.complete) {
+        this.setState({
+          isLoading: false,
+        });
+      }
+    };
+    newImage.src = this.props.src;
+    newImage.alt = this.props.alt;
+  }
+
+  displayImage = () => <img src={this.props.src} alt={this.props.alt} />;
+
+  render() {
+    return (
+      <ImageBox>
+        <Loader
+          type={'small'}
+          loading={this.state.isLoading}
+          onLoaded={this.displayImage}
+        />
+      </ImageBox>
+    );
+  }
+}
+
+export default ImageComponent;

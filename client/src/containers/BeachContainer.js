@@ -1,12 +1,10 @@
 // @flow
 
 import React from 'react';
-import { Wrapper } from '../components';
+import { Wrapper, Loader, Image } from '../components';
 import { fetchImages, fetchOneImage } from '../helpers/api';
 
-type PropTypes = {
-  items: Object,
-};
+type PropTypes = {};
 
 class Container extends React.Component {
   static displayName = 'BeachContainer';
@@ -29,12 +27,20 @@ class Container extends React.Component {
 
   renderImage = (item: Object) => {
     const { _id: key, url: path, name } = item;
-    return <img key={`${key}`} src={fetchOneImage({ path })} alt={name} />;
+    return <Image key={`${key}`} src={fetchOneImage({ path })} alt={name} />;
   };
+
+  renderImages = () => (
+    <div>{this.state.images.map(item => this.renderImage(item))}</div>
+  );
+
   render() {
     return (
       <Wrapper>
-        {this.state.images.map(item => this.renderImage(item))}
+        <Loader
+          loading={!this.state.images.length}
+          onLoaded={this.renderImages}
+        />
       </Wrapper>
     );
   }

@@ -1,7 +1,7 @@
 import { keyframes } from 'styled-components';
 
 // Sizes variables
-export const defaultSectionMargins = '2.5em 10em';
+export const defaultSectionMargins = '2.5em 1em';
 export const defaultHorizontalPadding = '1em';
 export const defaultVerticalPadding = '0.5em';
 

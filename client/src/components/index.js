@@ -4,3 +4,4 @@ export { default as Header } from './Header';
 export { default as Title } from './Title';
 export { default as Image } from './Image';
 export { default as Wrapper } from './Wrapper';
+export { default as Loader } from './Loader';
