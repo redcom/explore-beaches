@@ -8,6 +8,9 @@ export const defaultVerticalPadding = '0.5em';
 // Colors variables
 export const white = '#fff';
 export const black = '#000';
+export const errorColor = '#e36049';
+export const notificationColor = '#b294bb';
+
 export const defaultPrimaryColor = black;
 
 // Font style

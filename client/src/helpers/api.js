@@ -33,7 +33,6 @@ export const apiLogin = ({ username, password }) =>
       return {
         username,
         token,
-        isAuthorized: true,
       };
     } catch (error) {
       throw error;

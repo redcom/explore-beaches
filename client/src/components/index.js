@@ -8,3 +8,4 @@ export { default as Loader } from './Loader';
 export { default as SigninForm } from './SigninForm';
 export { default as Text } from './Text';
 export { Form, FormGroup, Label, FormGroupBox } from './FormElements';
+export { default as Notification } from './Notification';

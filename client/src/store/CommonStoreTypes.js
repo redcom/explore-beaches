@@ -4,7 +4,6 @@
 export type UserType = {
   username?: string,
   token?: string,
-  isAuthorized?: boolean,
 };
 
 export type ErrorsType = Object;

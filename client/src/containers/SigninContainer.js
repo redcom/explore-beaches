@@ -1,28 +1,36 @@
 // @flow
-
+import type { State, UserType } from '../store/CommonStoreTypes';
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { ErrorContainer } from '../containers';
-import { Wrapper, SigninForm } from '../components';
+import { Wrapper, SigninForm, Notification } from '../components';
 import { login } from '../actions/UserActions';
+import { isAuthorized } from '../helpers/user';
 
-const SigninContainer = (
-  {
-    dispatch,
-  }: {
-    dispatch: Function,
-  },
-) => {
+type Props = {
+  user: UserType,
+  dispatch: Function,
+};
+const SigninContainer = ({ user, dispatch }: Props) => {
   const onLogin = ({ username, password }) =>
     dispatch(login({ username, password }));
 
   return (
     <Wrapper>
       <SigninForm onLogin={onLogin}>
-        <ErrorContainer />
+        {isAuthorized(user)
+          ? <Notification>
+              <Link to="/">
+                You are authorized. Click here to go to homepage
+              </Link>
+            </Notification>
+          : <ErrorContainer />}
       </SigninForm>
     </Wrapper>
   );
 };
 
-export default connect()(SigninContainer);
+export default connect((state: State) => ({ user: state.user }))(
+  SigninContainer,
+);

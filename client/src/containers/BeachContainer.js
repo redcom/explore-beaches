@@ -1,12 +1,18 @@
 // @flow
 
+import type { State, UserType } from '../store/CommonStoreTypes';
+
 import React from 'react';
-import { Wrapper, Loader, Image } from '../components';
+import { connect } from 'react-redux';
+import { Wrapper, Loader, Image, Title } from '../components';
 import { apiFetchImages, apiFetchOneImage } from '../helpers/api';
+import { isAuthorized } from '../helpers/user';
 
-type PropTypes = {};
+type PropTypes = {
+  user: UserType,
+};
 
-class Container extends React.Component {
+class BeachContainer extends React.Component {
   static displayName = 'BeachContainer';
 
   props: PropTypes;
@@ -37,6 +43,8 @@ class Container extends React.Component {
   render() {
     return (
       <Wrapper>
+        {isAuthorized(this.props.user) &&
+          <Title>Hello {this.props.user.username}. Check this beaches. </Title>}
         <Loader
           loading={!this.state.images.length}
           onLoaded={this.renderImages}
@@ -46,4 +54,6 @@ class Container extends React.Component {
   }
 }
 
-export default Container;
+export default connect((state: State) => ({ user: state.user }))(
+  BeachContainer,
+);
