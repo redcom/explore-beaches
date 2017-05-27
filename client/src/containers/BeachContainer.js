@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Wrapper, Loader, Image } from '../components';
-import { fetchImages, fetchOneImage } from '../helpers/api';
+import { apiFetchImages, apiFetchOneImage } from '../helpers/api';
 
 type PropTypes = {};
 
@@ -18,7 +18,7 @@ class Container extends React.Component {
 
   componentWillMount() {
     (async () => {
-      const images = await fetchImages(this.state.page)();
+      const images = await apiFetchImages(this.state.page)();
       this.setState({
         images,
       });
@@ -27,7 +27,7 @@ class Container extends React.Component {
 
   renderImage = (item: Object) => {
     const { _id: key, url: path, name } = item;
-    return <Image key={`${key}`} src={fetchOneImage({ path })} alt={name} />;
+    return <Image key={`${key}`} src={apiFetchOneImage({ path })} alt={name} />;
   };
 
   renderImages = () => (
