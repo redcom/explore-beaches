@@ -1,10 +1,28 @@
+// @flow
+
 import React from 'react';
-import { Wrapper } from '../components';
+import { connect } from 'react-redux';
+import { ErrorContainer } from '../containers';
+import { Wrapper, SigninForm } from '../components';
+import { login } from '../actions/UserActions';
 
-const Container = () => (
-  <Wrapper>
-    Signin Container
-  </Wrapper>
-);
+const SigninContainer = (
+  {
+    dispatch,
+  }: {
+    dispatch: Function,
+  },
+) => {
+  const onLogin = ({ username, password }) =>
+    dispatch(login({ username, password }));
 
-export default Container;
+  return (
+    <Wrapper>
+      <SigninForm onLogin={onLogin}>
+        <ErrorContainer />
+      </SigninForm>
+    </Wrapper>
+  );
+};
+
+export default connect()(SigninContainer);

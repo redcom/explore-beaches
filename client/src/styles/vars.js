@@ -8,11 +8,13 @@ export const defaultVerticalPadding = '0.5em';
 // Colors variables
 export const white = '#fff';
 export const black = '#000';
+export const defaultPrimaryColor = black;
 
 // Font style
-export const defaultFontSize = '1.2em';
-export const headerFontSize = '18px';
-export const smallFontSize = '13px';
+export const defaultFontSize = '1em';
+export const headerFontSize = '1.8em';
+export const smallFontSize = '0.8em';
+export const defaultLineHeight = '1.2em';
 
 export const slideInAnimation = keyframes`
   0% {

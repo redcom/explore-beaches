@@ -1,2 +1,8 @@
 export const GET_INITIAL_STATE = 'GET_INITIAL_STATE';
 export const HIDRATE_INITIAL_STATE = 'HIDRATE_INITIAL_STATE';
+
+export const LOGIN_FAILED = 'LOGIN_FAILED';
+export const REGISTER_FAILED = 'REGISTER_FAILED';
+
+export const LOGIN = 'LOGIN';
+export const REGISTER = 'REGISTER';

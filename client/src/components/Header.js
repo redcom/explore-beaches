@@ -43,7 +43,7 @@ const Header = () => (
     <TopLeft>
       <Signout to={'/signout'}>Signout</Signout>
       <Me to={'/me'}>Me</Me>
-      <Signin to={'/signin'}> Signin</Signin>
+      <Signin to={'/signin'}>Login</Signin>
     </TopLeft>
   </HeaderBox>
 );
