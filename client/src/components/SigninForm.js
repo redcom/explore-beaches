@@ -1,62 +1,22 @@
 // @flow
 
 import React from 'react';
-import styled from 'styled-components';
-import { Button, Title } from '../components';
-
-import {
-  defaultFontSize,
-  defaultPrimaryColor,
-  defaultLineHeight,
-  defaultHorizontalPadding,
-  defaultVerticalPadding,
-} from '../styles/vars';
+import { Button, Form, FormGroup, Text, Title } from '../components';
 
 type Props = {
   children: any,
   onLogin: Function,
 };
 
-const Form = styled.form`
-  font-size: ${defaultFontSize};
-  line-height: ${defaultLineHeight};
-  color: ${defaultPrimaryColor};
-  display: flex;
-  flex-direction: column;
-  width: 60%;
-  margin: calc(60vh / 2) auto;
-`;
-
-const FormGroupBox = styled.div`
-  padding: ${defaultVerticalPadding} ${defaultHorizontalPadding};
-  display: flex;
-  justify-content: center;
-`;
-
-const Label = styled.label`
-  text-transform: capitalize;
-  flex: 1;
-`;
-const FormGroup = ({ children, label }) => (
-  <FormGroupBox>
-    {label ? <Label htmlFor={label}>{label}</Label> : ''}
-    {children}
-  </FormGroupBox>
-);
-
-const Text = styled.input.attrs({
-  type: props => props.type === 'password' ? 'password' : 'text',
-  placeholder: props => props.placeholder || '',
-})`
-  width: 100%;
-  flex: 3;
-`;
+const onSubmit = evt => {
+  evt.preventDefault();
+  console.log(evt);
+};
 
 const SigninForm = ({ children, onLogin }: Props) => {
   const doLogin = () => onLogin({ username: 'aaa', password: 'bbbb' });
-
   return (
-    <Form>
+    <Form onSubmit={onSubmit}>
       <FormGroup><Title>Login</Title></FormGroup>
 
       <FormGroup>{children}</FormGroup>
