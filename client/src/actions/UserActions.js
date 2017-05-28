@@ -35,7 +35,6 @@ export const getProfile = ({ token }: UserType): Function =>
   async dispatch => {
     try {
       const user = await apiGetProfile({ token })();
-      console.log(user, dispatch);
       return dispatch({
         type: UPDATE_USER,
         user,

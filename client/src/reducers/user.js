@@ -12,7 +12,6 @@ const user = (state: UserType = initialState, action: Object) => {
     case REGISTER:
       return { ...action.user };
     case UPDATE_USER:
-      console.log(action.user);
       return { ...state, ...action.user };
     default:
       return state;
