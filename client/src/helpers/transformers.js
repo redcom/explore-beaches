@@ -1,5 +1,6 @@
 /* eslint-disable no-constant-condition, no-await-in-loop */
 // https://jakearchibald.com/2015/thats-so-fetch/
+
 export const readStream = async stream => {
   // It makes sens to wait wait for full payload
   const reader = stream.getReader();
