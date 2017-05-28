@@ -13,8 +13,7 @@ type Props = {
   dispatch: Function,
 };
 const SigninContainer = ({ user, dispatch }: Props) => {
-  const onLogin = ({ username, password }) =>
-    dispatch(login({ username, password }));
+  const onLogin = ({ email, password }) => dispatch(login({ email, password }));
 
   return (
     <Wrapper>
@@ -22,7 +21,7 @@ const SigninContainer = ({ user, dispatch }: Props) => {
         {isAuthorized(user)
           ? <Notification>
               <Link to="/">
-                You are authorized. Click here to go to homepage
+                You are authorized now. Click here to go to homepage
               </Link>
             </Notification>
           : <ErrorContainer />}

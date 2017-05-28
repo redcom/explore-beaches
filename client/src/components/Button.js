@@ -3,12 +3,16 @@ import {
   defaultFontSize,
   defaultPrimaryColor,
   defaultLineHeight,
+  defaultDisabledColor,
 } from '../styles/vars';
 
-const Button = styled.button`
+const Button = styled.button.attrs({
+  disabled: props => props.isDisabled,
+})`
   font-size: ${props => props.fontSize || defaultFontSize};
   border: ${props => props.border || `2px solid ${defaultPrimaryColor}`};
-  background: transparent;
+  background-color: ${props => props.isDisabled ? defaultDisabledColor : 'transparent'};
+  cursor: ${props => props.isDisabled ? 'not-allowed' : 'auto'};
   width: ${props => props.width || '80%'};
   color: ${defaultPrimaryColor};
   align-self: ${props => props.alignSelf || 'flex-end'};

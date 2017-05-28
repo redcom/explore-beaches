@@ -11,13 +11,41 @@ const opts = {
   }),
 };
 
-export const apiLogin = ({ username, password }) =>
+export const apiRegister = ({ email, password }) =>
   async () => {
     const payload = {
       ...opts,
       method: 'POST',
       body: JSON.stringify({
-        email: username, // TODO change username to email in Signin form
+        email,
+        password,
+      }),
+    };
+
+    try {
+      const response = await fetch(`${API_URL}/user/register`, payload);
+      if (response.status !== 200) {
+        throw new Error("Can't create new user. Try again later.");
+      }
+      const token = response.headers.get(TOKEN_NAME);
+      if (!token) throw new Error('Registration failed. Try again later.');
+
+      return {
+        email,
+        token,
+      };
+    } catch (error) {
+      throw error;
+    }
+  };
+
+export const apiLogin = ({ email, password }) =>
+  async () => {
+    const payload = {
+      ...opts,
+      method: 'POST',
+      body: JSON.stringify({
+        email,
         password,
       }),
     };
@@ -31,7 +59,7 @@ export const apiLogin = ({ username, password }) =>
       if (!token) throw new Error('Login failed due to invalid token');
 
       return {
-        username,
+        email,
         token,
       };
     } catch (error) {

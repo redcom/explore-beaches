@@ -2,7 +2,7 @@
 
 // Stores
 export type UserType = {
-  username?: string,
+  email?: string,
   token?: string,
 };
 

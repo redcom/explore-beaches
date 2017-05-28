@@ -44,7 +44,7 @@ class BeachContainer extends React.Component {
     return (
       <Wrapper>
         {isAuthorized(this.props.user) &&
-          <Title>Hello {this.props.user.username}. Check this beaches. </Title>}
+          <Title>Hello {this.props.user.email}. Check this beaches. </Title>}
         <Loader
           loading={!this.state.images.length}
           onLoaded={this.renderImages}
