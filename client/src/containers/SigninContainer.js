@@ -1,4 +1,5 @@
 // @flow
+
 import type { State, UserType } from '../store/CommonStoreTypes';
 import React from 'react';
 import { connect } from 'react-redux';

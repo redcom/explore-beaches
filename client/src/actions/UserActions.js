@@ -1,12 +1,14 @@
 // @flow
 
-import type { ErrorsType } from '../store/CommonStoreTypes';
-import { apiLogin, apiRegister } from '../helpers/api';
+import type { ErrorsType, UserType } from '../store/CommonStoreTypes';
+import { apiLogin, apiRegister, apiGetProfile } from '../helpers/api';
 import {
   LOGIN,
   LOGIN_FAILED,
   REGISTER,
   REGISTER_FAILED,
+  UPDATE_USER,
+  UPDATE_USER_FAILED,
 } from '../constants/ActionTypes';
 
 export const loginFailed = (error: ErrorsType): Object => ({
@@ -19,15 +21,34 @@ export const registerFailed = (error: ErrorsType): Object => ({
   error,
 });
 
+export const getProfileFailed = (error: ErrorsType): Object => ({
+  type: UPDATE_USER_FAILED,
+  error,
+});
+
 type CredentialsType = {
   email: string,
   password: string,
 };
 
-export const login = (credentials: CredentialsType): Function =>
+export const getProfile = ({ token }: UserType): Function =>
   async dispatch => {
     try {
-      const { token, email } = await apiLogin(credentials)();
+      const user = await apiGetProfile({ token })();
+      console.log(user, dispatch);
+      return dispatch({
+        type: UPDATE_USER,
+        user,
+      });
+    } catch (error) {
+      return dispatch(getProfileFailed(error));
+    }
+  };
+
+export const login = ({ email, password }: CredentialsType): Function =>
+  async dispatch => {
+    try {
+      const { token } = await apiLogin({ email, password })();
       return dispatch({
         type: LOGIN,
         user: {
@@ -40,11 +61,7 @@ export const login = (credentials: CredentialsType): Function =>
     }
   };
 
-type RegisterType = {
-  email: string,
-  password: string,
-};
-export const register = ({ email, password }: RegisterType): Function =>
+export const register = ({ email, password }: CredentialsType): Function =>
   async dispatch => {
     try {
       const { token } = await apiRegister({ email, password })();

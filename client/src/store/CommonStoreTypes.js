@@ -4,6 +4,7 @@
 export type UserType = {
   email?: string,
   token?: string,
+  _id?: string,
 };
 
 export type ErrorsType = Object;

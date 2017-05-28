@@ -1,6 +1,7 @@
 /* eslint-disable no-constant-condition, no-await-in-loop */
 
 import { API_URL, TOKEN_NAME } from '../config';
+import { readStream } from '../helpers/transformers';
 
 const opts = {
   mode: 'cors',
@@ -10,6 +11,26 @@ const opts = {
     'Cache-Control': 'no-cache',
   }),
 };
+
+export const apiGetProfile = ({ token }) =>
+  async () => {
+    const payload = {
+      ...opts,
+      method: 'GET',
+    };
+
+    opts.headers.append(TOKEN_NAME, token); // TODO. Find a way to persist this settings.
+
+    try {
+      const response = await fetch(`${API_URL}/user/me`, payload);
+      if (response.status !== 200) {
+        throw new Error("Can't get user profile. Try again later.");
+      }
+      return await readStream(response.body);
+    } catch (error) {
+      throw error;
+    }
+  };
 
 export const apiRegister = ({ email, password }) =>
   async () => {
