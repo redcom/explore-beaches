@@ -28,7 +28,7 @@ const UserProfile = ({ user }: { user: UserType }) => (
   <UserProfileBox>
     <Ul>
       {Object.keys(user).map(property => (
-        <Li>
+        <Li key={property}>
           <Property>{property}</Property>: {user[property]}
         </Li>
       ))}

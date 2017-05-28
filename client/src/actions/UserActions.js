@@ -1,15 +1,27 @@
 // @flow
 
 import type { ErrorsType, UserType } from '../store/CommonStoreTypes';
-import { apiLogin, apiRegister, apiGetProfile } from '../helpers/api';
+import {
+  apiLogin,
+  apiRegister,
+  apiGetProfile,
+  apiLogout,
+} from '../helpers/api';
 import {
   LOGIN,
   LOGIN_FAILED,
+  LOGOUT,
+  LOGOUT_FAILED,
   REGISTER,
   REGISTER_FAILED,
   UPDATE_USER,
   UPDATE_USER_FAILED,
 } from '../constants/ActionTypes';
+
+export const logoutFailed = (error: ErrorsType): Object => ({
+  type: LOGOUT_FAILED,
+  error,
+});
 
 export const loginFailed = (error: ErrorsType): Object => ({
   type: LOGIN_FAILED,
@@ -31,6 +43,17 @@ type CredentialsType = {
   password: string,
 };
 
+export const logout = ({ token }: UserType): Function =>
+  async dispatch => {
+    try {
+      await apiLogout({ token })();
+      return dispatch({
+        type: LOGOUT,
+      });
+    } catch (error) {
+      return dispatch(logoutFailed(error));
+    }
+  };
 export const getProfile = ({ token }: UserType): Function =>
   async dispatch => {
     try {

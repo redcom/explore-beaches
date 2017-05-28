@@ -1,7 +1,7 @@
 // @flow
 import type { UserType } from '../store/CommonStoreTypes';
 
-import { LOGIN, REGISTER, UPDATE_USER } from '../constants/ActionTypes';
+import { LOGIN, REGISTER, UPDATE_USER, LOGOUT } from '../constants/ActionTypes';
 
 const initialState = {};
 
@@ -13,6 +13,8 @@ const user = (state: UserType = initialState, action: Object) => {
       return { ...action.user };
     case UPDATE_USER:
       return { ...state, ...action.user };
+    case LOGOUT:
+      return {};
     default:
       return state;
   }

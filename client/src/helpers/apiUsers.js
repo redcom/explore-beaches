@@ -10,6 +10,26 @@ const opts = {
   }),
 };
 
+export const apiLogout = ({ token }) =>
+  async () => {
+    const payload = {
+      ...opts,
+      method: 'DELETE',
+    };
+
+    opts.headers.append(TOKEN_NAME, token); // TODO. Find a way to persist this settings.
+
+    try {
+      const response = await fetch(`${API_URL}/user/logout`, payload);
+      if (response.status !== 200) {
+        throw new Error("Can't logout. Try again later.");
+      }
+      return;
+    } catch (error) {
+      throw error;
+    }
+  };
+
 export const apiGetProfile = ({ token }) =>
   async () => {
     const payload = {
