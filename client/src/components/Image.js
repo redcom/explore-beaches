@@ -12,7 +12,6 @@ const ImageBox = styled.div`
 `;
 
 const ImgBox = styled.div`
-  width: 100%;
   text-align: center;
   line-height: 3em;
   overflow: hidden;

@@ -8,7 +8,7 @@ const ImageGallery = styled.div`
   @media (max-width: 400px) {
     column-count: 1;
   }
-  @media (max-width: 700px) {
+  @media (min-width: 400px) and (max-width: 700px) {
     column-count: 2;
   }
 `;
