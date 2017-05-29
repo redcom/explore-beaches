@@ -1,12 +1,15 @@
 Explore Beaches
 ====
 
+## DEMO
+[http://miscreant-wash.surge.sh/](http://miscreant-wash.surge.sh/)
+
 ## Setup
 ```
 git clone https://github.com/redcom/explore-beaches
 cd explore-beaches && yarn   # install project dependencies
-cd ./client && yarn  		  # install client dependencies
-cd ../ && yarn start         # start client and server in decelopment mode
+cd ./client && yarn         # install client dependencies
+cd explore-beaches && yarn start         # start client and server in decelopment mode
 ```
 
 ## Commands
@@ -19,23 +22,25 @@ cd ./ && ./scripts/flowWorking # run flow type check ( long running process )
 
 ## Architecture preview and project structure
 
-**./server** folder contains source code of the server API. Not heavely used in this projects.
+**./server** folder contains source code of the server API. Find a usage for it.
 
 **./client** folder contains the source code for the application
 
 * I used ***styled-components*** for styling the components.
 * I used ***react-redux**** for client side state management
 * I separated the business logic and API side efects into **client/src/actions/UserActions.js** to handle user domain problems.
+* API communication is done using helpers/apiUsers and helpers/apiImages
 * The state signature of the application can be checked from **./client/src/store/CommonStoreTypes.js** This is also used for flow type check.
 
 **./** root folder of the application contains scripts to execture the application in various stages
 
-There are scripts for precommit hook to prettier the javascript source code for server and client
+There are scripts for precommit hooks to prettier the javascript source code for server and client
 
 ## TODO
-* [  ] add more logic for handling errors
-* [  ] improve logic for navigaiton system
-
+- [ ] add more logic for handling errors
+- [ ] improve logic for navigation system
+- [ ] implement caching mechanism using service workers present in latest version of create-react-app [making-a-progressive-web-app](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#making-a-progressive-web-app)
+- [ ] implement infinite scrolling using either IntersectionObserver or listen for changes window.onScroll document.body.scrollTop and act accordingly
 
 
 
