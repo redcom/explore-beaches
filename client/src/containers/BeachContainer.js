@@ -22,7 +22,7 @@ class BeachContainer extends React.Component {
     images: [],
   };
 
-  componentWillMount() {
+  componentDidMount() {
     (async () => {
       const images = await apiFetchImages(this.state.page)();
       this.setState({

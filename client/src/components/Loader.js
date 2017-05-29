@@ -12,10 +12,14 @@ const LoaderBox = styled.div`
 type Props = {
   loading: boolean,
   type: string,
-  onLoaded: Function,
+  onLoaded?: Function,
+  onTimeout?: Function,
 };
 
-const Loader = ({ loading = true, type = '', onLoaded }: Props) =>
-  loading ? <LoaderBox type={type} /> : onLoaded();
+const Loader = ({ loading = true, type = '', onLoaded, onTimeout }: Props) => {
+  if (loading) return <LoaderBox type={type} />;
+  const callback = onLoaded || onTimeout;
+  return callback && callback();
+};
 
 export default Loader;

@@ -29,7 +29,7 @@ class MyProfileContainer extends React.Component {
 
   props: Props;
 
-  componentWillMount() {
+  componentDidMount() {
     const { user, dispatch } = this.props;
 
     if (!isAuthorized(user)) {

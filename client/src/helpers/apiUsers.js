@@ -17,7 +17,10 @@ export const apiLogout = ({ token }) =>
       method: 'DELETE',
     };
 
-    opts.headers.append(TOKEN_NAME, token); // TODO. Find a way to persist this settings.
+    if (!opts.headers.get(`${TOKEN_NAME}`)) {
+      // TODO. Find a way to persist this settings maybe localstorage.
+      opts.headers.append(TOKEN_NAME, token);
+    }
 
     try {
       const response = await fetch(`${API_URL}/user/logout`, payload);

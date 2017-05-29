@@ -28,6 +28,7 @@ class ImageComponent extends React.Component {
   props: Props;
   state = {
     isLoading: true,
+    loadingFailed: false,
   };
 
   componentDidMount() {
@@ -39,19 +40,27 @@ class ImageComponent extends React.Component {
         });
       }
     };
+    newImage.onerror = () => {
+      this.setState({
+        isLoading: false,
+        loadingFailed: true,
+      });
+    };
     newImage.src = this.props.src;
-    newImage.alt = this.props.alt;
   }
 
   displayImage = () => <Img src={this.props.src} alt={this.props.alt} />;
+  displayTimeout = () => <div>Image not loaded</div>;
 
   render() {
+    const { isLoading, loadingFailed } = this.state;
     return (
       <ImageBox>
         <Loader
           type={'small'}
-          loading={this.state.isLoading}
-          onLoaded={this.displayImage}
+          loading={isLoading}
+          onLoaded={!loadingFailed ? this.displayImage : null}
+          onTimeout={loadingFailed ? this.displayTimeout : null}
         />
       </ImageBox>
     );
