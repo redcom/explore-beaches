@@ -4,7 +4,7 @@ import type { State, UserType } from '../store/CommonStoreTypes';
 
 import React from 'react';
 import { connect } from 'react-redux';
-import { Wrapper, Loader, Image, Title } from '../components';
+import { Wrapper, Loader, ImageGallery, Image, Title } from '../components';
 import { apiFetchImages, apiFetchOneImage } from '../helpers/api';
 import { isAuthorized } from '../helpers/user';
 
@@ -37,7 +37,9 @@ class BeachContainer extends React.Component {
   };
 
   renderImages = () => (
-    <div>{this.state.images.map(item => this.renderImage(item))}</div>
+    <ImageGallery>
+      {this.state.images.map(item => this.renderImage(item))}
+    </ImageGallery>
   );
 
   render() {

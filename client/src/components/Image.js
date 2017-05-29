@@ -5,14 +5,22 @@ import styled from 'styled-components';
 import { Loader } from '../components';
 
 const ImageBox = styled.div`
-  min-height: 100px;
-  min-width: 100px;
+  display: inline-block;
+  margin: 0 0 0.5em;
+  width: 100%;
 `;
 
 type Props = {
   src: string,
   alt: string,
 };
+
+const Img = styled.img.attrs({
+  src: props => props.src,
+  alt: props => props.alt,
+})`
+  width: 100%;
+`;
 
 class ImageComponent extends React.Component {
   static displayName = 'ImageComponent';
@@ -35,7 +43,7 @@ class ImageComponent extends React.Component {
     newImage.alt = this.props.alt;
   }
 
-  displayImage = () => <img src={this.props.src} alt={this.props.alt} />;
+  displayImage = () => <Img src={this.props.src} alt={this.props.alt} />;
 
   render() {
     return (

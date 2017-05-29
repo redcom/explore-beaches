@@ -3,6 +3,7 @@ export { default as Errors } from './Errors';
 export { default as Header } from './Header';
 export { default as Title } from './Title';
 export { default as Image } from './Image';
+export { default as ImageGallery } from './ImageGallery';
 export { default as Wrapper } from './Wrapper';
 export { default as Loader } from './Loader';
 export { default as UserProfile } from './UserProfile';
