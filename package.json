@@ -14,7 +14,8 @@
     "precomit": "yarn run lint; yarn run prettier;",
     "prettier": "prettier --bracket-spacing --single-quote --tab-width 2 --trailing-comma all --parser babylon --print-width 80  --write \"{{client/src,server,webpack},__{tests,mocks}__}/**/*.js\"",
     "server:watch": "NODE_ENV=dev PORT=8888 nodemon --exec babel-node -- ./server/",
-    "server:start": "NODE_ENV=production PORT=8888 babel-node ./server/"
+    "server:start": "NODE_ENV=production PORT=8888 babel-node ./server/",
+    "deployGithub": "cd client && react-scripts build && gh-pages -d build"
   },
   "engines": {
     "node": "7.2.1"
@@ -25,6 +26,7 @@
     "body-parser": "^1.17.1",
     "cors": "^2.8.3",
     "express": "^4.15.2",
+    "global": "^4.3.2",
     "helmet": "^3.5.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
@@ -33,7 +35,8 @@
     "redux": "^3.6.0",
     "redux-devtools-extension": "^2.13.0",
     "redux-thunk": "^2.2.0",
-    "styled-components": "^1.4.4"
+    "styled-components": "^1.4.4",
+    "surge": "^0.19.0"
   },
   "devDependencies": {
     "babel-cli": "^6.24.0",
