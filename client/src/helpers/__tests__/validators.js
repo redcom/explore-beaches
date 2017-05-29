@@ -74,6 +74,6 @@ describe('isValidPassword()', () => {
     const actual = isValidPassword(str);
     const expected = false;
 
-    expect(actual).toBe(expected);
+    expect(actual).toEqual(expected);
   });
 });

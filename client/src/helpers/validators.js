@@ -3,4 +3,4 @@ export const isUrl = url =>
 
 export const isEmail = (email = '') => !!email.trim().match(/\w@\w.\w/);
 
-export const isValidPassword = (password = '') => password.trim().length > 0;
+export const isValidPassword = (password = '') => password.trim().length > 6;
