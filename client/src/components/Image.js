@@ -3,6 +3,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Loader } from '../components';
+import { white } from '../styles/vars';
 
 const ImageBox = styled.div`
   display: inline-block;
@@ -10,10 +11,21 @@ const ImageBox = styled.div`
   width: 100%;
 `;
 
-type Props = {
-  src: string,
-  alt: string,
-};
+const ImgBox = styled.div`
+  width: 100%;
+  text-align: center;
+  line-height: 3em;
+  overflow: hidden;
+  color: ${white};
+  &>div {
+    display: none;
+    margin-top: -4em;
+  }
+  &:hover > div {
+    margin-bottom: 1em;
+    display: block;
+  }
+`;
 
 const Img = styled.img.attrs({
   src: props => props.src,
@@ -21,6 +33,11 @@ const Img = styled.img.attrs({
 })`
   width: 100%;
 `;
+
+type Props = {
+  src: string,
+  alt: string,
+};
 
 class ImageComponent extends React.Component {
   static displayName = 'ImageComponent';
@@ -49,7 +66,13 @@ class ImageComponent extends React.Component {
     newImage.src = this.props.src;
   }
 
-  displayImage = () => <Img src={this.props.src} alt={this.props.alt} />;
+  displayImage = () => (
+    <ImgBox>
+      <Img src={this.props.src} alt={this.props.alt} />
+      <div>{this.props.alt}</div>
+    </ImgBox>
+  );
+
   displayTimeout = () => <div>Image not loaded</div>;
 
   render() {

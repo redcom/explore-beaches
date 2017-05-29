@@ -33,7 +33,13 @@ class BeachContainer extends React.Component {
 
   renderImage = (item: Object) => {
     const { _id: key, url: path, name } = item;
-    return <Image key={`${key}`} src={apiFetchOneImage({ path })} alt={name} />;
+    return (
+      <Image
+        key={`${key}`}
+        src={apiFetchOneImage({ path })}
+        alt={name.match(/(\w|-)+/)[0]}
+      />
+    );
   };
 
   renderImages = () => (
