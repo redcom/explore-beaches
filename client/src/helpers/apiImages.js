@@ -6,7 +6,7 @@ const opts = {
   headers: new Headers({
     Accept: 'application/json',
     'Content-Type': 'application/json',
-    'Cache-Control': 'no-cache',
+    'Cache-Control': 'force-cache',
   }),
 };
 
