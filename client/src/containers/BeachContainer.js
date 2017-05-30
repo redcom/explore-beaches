@@ -10,6 +10,7 @@ import { isAuthorized } from '../helpers/user';
 
 type PropTypes = {
   user: UserType,
+  page?: number,
 };
 
 class BeachContainer extends React.Component {
@@ -17,16 +18,28 @@ class BeachContainer extends React.Component {
 
   props: PropTypes;
 
-  state = {
+  static defaultProps = {
     page: 0,
+  };
+
+  state = {
     images: [],
   };
 
   componentDidMount() {
     (async () => {
-      const images = await apiFetchImages(this.state.page)();
+      const images = await apiFetchImages({ page: this.props.page })();
       this.setState({
         images,
+      });
+    })();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    (async () => {
+      const images = await apiFetchImages({ page: nextProps.page })();
+      this.setState({
+        images: [...this.state.images, ...images],
       });
     })();
   }

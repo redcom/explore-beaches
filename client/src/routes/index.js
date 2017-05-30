@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import {
-  BeachContainer,
+  BeachContainerWithInfiniteScroll,
   SigninContainer,
   SignupContainer,
   SignoutContainer,
@@ -32,7 +32,7 @@ class Routes extends Component {
       <Router>
         <div className="app-container">
           <Header />
-          <Route exact path="/" component={BeachContainer} />
+          <Route exact path="/" component={BeachContainerWithInfiniteScroll} />
           <Route path="/signin" component={SigninContainer} />
           <Route path="/signout" component={SignoutContainer} />
           <Route path="/signup" component={SignupContainer} />

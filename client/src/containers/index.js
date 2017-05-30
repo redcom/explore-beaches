@@ -1,3 +1,6 @@
+export {
+  default as BeachContainerWithInfiniteScroll,
+} from './BeachContainerWithInfiniteScroll';
 export { default as BeachContainer } from './BeachContainer';
 export { default as SignupContainer } from './SignupContainer';
 export { default as SignoutContainer } from './SignoutContainer';
