@@ -36,11 +36,16 @@ cd ./ && ./scripts/flowWorking # run flow type check ( long running process )
 
 There are scripts for precommit hooks to prettier the javascript source code for server and client
 
-## TODO
+## TODO/DONE
 - [ ] add more logic for handling errors
 - [ ] improve logic for navigation system
 - [ ] implement caching mechanism using service workers present in latest version of create-react-app [making-a-progressive-web-app](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#making-a-progressive-web-app)
-- [ ] implement infinite scrolling using either IntersectionObserver or listen for changes window.onScroll document.body.scrollTop and act accordingly
+- [x] The user should see a list of images fetched from the HeyBeach API.
+- [x] A user should be able to register/login/logout inside the app.
+- [x] Ensure the design interface is responsive and functional on mobile, desktop and/or tablets. Can be improved further.
+- [x] Include the image title with each image. Visible on hover image
+- [x] implement infinite scrolling. Can be optimized further
+- [] Expand the image details when the user clicks on the image.
 
 
 
